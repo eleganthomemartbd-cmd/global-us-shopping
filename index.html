@@ -1,0 +1,3003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Global US Shopping</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f4f6;
+  color:#111827;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* HEADER */
+
+header{
+  background:#111827;
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 10px #0003;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.logo span{
+  color:#fbbf24;
+}
+
+.search{
+  flex:1;
+  display:flex;
+  max-width:600px;
+  margin:auto;
+}
+
+.search input{
+  width:100%;
+  padding:12px 15px;
+  border:0;
+  outline:none;
+  font-size:15px;
+  border-radius:8px 0 0 8px;
+}
+
+.search button{
+  width:55px;
+  background:#fbbf24;
+  font-size:20px;
+  border-radius:0 8px 8px 0;
+}
+
+.nav-btn{
+  background:#1f2937;
+  color:white;
+  padding:10px 13px;
+  border-radius:8px;
+  font-size:14px;
+}
+
+.nav-btn:hover{
+  background:#374151;
+}
+
+.cart-btn{
+  position:relative;
+}
+
+.cart-count{
+  position:absolute;
+  top:-8px;
+  right:-7px;
+  background:#ef4444;
+  color:white;
+  width:21px;
+  height:21px;
+  border-radius:50%;
+  font-size:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* HERO */
+
+.hero{
+  background:linear-gradient(135deg,#111827,#1d4ed8);
+  color:white;
+  padding:65px 20px;
+}
+
+.hero-inner{
+  max-width:1200px;
+  margin:auto;
+}
+
+.hero h1{
+  font-size:46px;
+  margin-bottom:12px;
+}
+
+.hero p{
+  font-size:20px;
+  color:#dbeafe;
+  margin-bottom:25px;
+}
+
+.primary{
+  background:#fbbf24;
+  color:#111827;
+  padding:13px 23px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:16px;
+}
+
+.primary:hover{
+  background:#f59e0b;
+}
+
+/* MAIN */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:28px 18px;
+}
+
+.section-title{
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+/* PRODUCTS */
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.product{
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 3px 16px #00000012;
+  transition:.2s;
+}
+
+.product:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 25px #0000001c;
+}
+
+.product-img{
+  height:190px;
+  background:#eef2ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:75px;
+}
+
+.product-body{
+  padding:16px;
+}
+
+.product-name{
+  font-size:17px;
+  font-weight:700;
+  min-height:42px;
+}
+
+.product-desc{
+  color:#6b7280;
+  font-size:13px;
+  margin:8px 0;
+}
+
+.price{
+  font-size:24px;
+  font-weight:800;
+  margin:10px 0;
+}
+
+.product-actions{
+  display:flex;
+  gap:8px;
+}
+
+.add-btn{
+  flex:1;
+  background:#e5e7eb;
+  padding:11px;
+  border-radius:8px;
+  font-weight:700;
+}
+
+.buy-btn{
+  flex:1;
+  background:#fbbf24;
+  padding:11px;
+  border-radius:8px;
+  font-weight:700;
+}
+
+/* PANELS */
+
+.panel{
+  background:white;
+  padding:22px;
+  border-radius:14px;
+  margin-bottom:25px;
+  box-shadow:0 3px 15px #0000000d;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.input{
+  width:100%;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  margin:7px 0;
+  outline:none;
+  font-size:15px;
+}
+
+.input:focus{
+  border-color:#2563eb;
+}
+
+.full-btn{
+  width:100%;
+  padding:12px;
+  background:#111827;
+  color:white;
+  border-radius:8px;
+  font-weight:700;
+  margin-top:8px;
+}
+
+/* CART */
+
+.cart-row{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.cart-icon{
+  width:65px;
+  height:65px;
+  background:#eef2ff;
+  border-radius:10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:32px;
+}
+
+.cart-info{
+  flex:1;
+}
+
+.cart-info h3{
+  font-size:16px;
+  margin-bottom:5px;
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.qty button{
+  width:30px;
+  height:30px;
+  border-radius:6px;
+  background:#e5e7eb;
+}
+
+.remove{
+  background:#ef4444;
+  color:white;
+  padding:8px 10px;
+  border-radius:6px;
+}
+
+.total-box{
+  text-align:right;
+  margin-top:18px;
+}
+
+.total{
+  font-size:25px;
+  font-weight:800;
+}
+
+/* ACCOUNT */
+
+.account-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:18px;
+}
+
+.account-card{
+  background:#f9fafb;
+  padding:18px;
+  border-radius:10px;
+  text-align:center;
+}
+
+.account-card b{
+  display:block;
+  font-size:22px;
+  margin-bottom:5px;
+}
+
+/* CHECKOUT */
+
+.checkout-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
+}
+
+.summary{
+  background:#f9fafb;
+  padding:18px;
+  border-radius:10px;
+  height:max-content;
+}
+
+.summary-line{
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+}
+
+.summary-total{
+  border-top:1px solid #ddd;
+  margin-top:8px;
+  padding-top:12px;
+  font-size:21px;
+  font-weight:800;
+}
+
+/* ORDERS */
+
+.order{
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  padding:15px;
+  margin:10px 0;
+}
+
+.status{
+  display:inline-block;
+  background:#dbeafe;
+  color:#1d4ed8;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+/* REVIEWS */
+
+.review{
+  border-top:1px solid #eee;
+  padding:12px 0;
+}
+
+.stars{
+  color:#f59e0b;
+}
+
+/* ADMIN */
+
+.admin{
+  border:2px solid #111827;
+}
+
+.admin-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.admin-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.admin-stat{
+  background:#111827;
+  color:white;
+  padding:18px;
+  border-radius:10px;
+}
+
+.admin-stat b{
+  display:block;
+  font-size:25px;
+  color:#fbbf24;
+}
+
+.admin-product,
+.admin-order{
+  border:1px solid #ddd;
+  padding:12px;
+  border-radius:8px;
+  margin:8px 0;
+}
+
+/* FOOTER */
+
+footer{
+  background:#111827;
+  color:#d1d5db;
+  text-align:center;
+  padding:35px 15px;
+  margin-top:40px;
+}
+
+.creator{
+  color:#fbbf24;
+  margin-top:7px;
+  font-weight:bold;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:2000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:15px;
+}
+
+.modal-box{
+  background:white;
+  width:100%;
+  max-width:500px;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:15px;
+  padding:22px;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.close{
+  background:#ef4444;
+  color:white;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#111827;
+  color:white;
+  padding:13px 18px;
+  border-radius:8px;
+  z-index:3000;
+  display:none;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+  .products{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .checkout-grid{
+    grid-template-columns:1fr;
+  }
+
+  .admin-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+
+  .nav{
+    flex-wrap:wrap;
+  }
+
+  .logo{
+    width:100%;
+    text-align:center;
+  }
+
+  .search{
+    order:3;
+    width:100%;
+  }
+
+  .nav-btn{
+    flex:1;
+  }
+
+  .hero{
+    padding:45px 20px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .product-img{
+    height:140px;
+    font-size:55px;
+  }
+
+  .product-body{
+    padding:12px;
+  }
+
+  .product-name{
+    font-size:15px;
+  }
+
+  .price{
+    font-size:20px;
+  }
+
+  .product-actions{
+    flex-direction:column;
+  }
+
+  .account-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cart-row{
+    flex-wrap:wrap;
+  }
+
+  .cart-info{
+    min-width:180px;
+  }
+}
+
+@media(max-width:380px){
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .product-actions button{
+    font-size:12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+🌎 GLOBAL <span>US</span> SHOPPING
+</div>
+
+<div class="search">
+
+<input
+id="searchInput"
+type="search"
+placeholder="Search products...">
+
+<button id="searchBtn">🔍</button>
+
+</div>
+
+<button
+class="nav-btn"
+id="accountBtn">
+👤 Account
+</button>
+
+<button
+class="nav-btn cart-btn"
+id="cartBtn">
+
+🛒 Cart
+
+<span
+class="cart-count"
+id="cartCount">
+0
+</span>
+
+</button>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="hero-inner">
+
+<h1>
+Shop Globally. Shop Smart.
+</h1>
+
+<p>
+Discover amazing products from around the world.
+</p>
+
+<button
+class="primary"
+onclick="scrollToProducts()">
+
+Shop Now 🛍️
+
+</button>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- ACCOUNT -->
+
+<section
+id="accountPanel"
+class="panel hidden">
+
+<div id="loginArea">
+
+<h2>Login / Register</h2>
+
+<input
+id="email"
+class="input"
+type="email"
+placeholder="Email address">
+
+<input
+id="password"
+class="input"
+type="password"
+placeholder="Password (minimum 6 characters)">
+
+<button
+class="full-btn"
+id="loginBtn">
+Login
+</button>
+
+<button
+class="full-btn"
+style="background:#2563eb"
+id="registerBtn">
+Create Account
+</button>
+
+<p
+id="authMessage"
+style="margin-top:10px;text-align:center">
+</p>
+
+</div>
+
+
+<div
+id="userArea"
+class="hidden">
+
+<h2>My Account 👤</h2>
+
+<p
+id="userEmail"
+style="margin-top:8px">
+</p>
+
+<div class="account-grid">
+
+<div class="account-card">
+<b id="orderCount">0</b>
+Orders
+</div>
+
+<div class="account-card">
+<b>⭐</b>
+Buyer Reviews
+</div>
+
+<div class="account-card">
+<b>👑</b>
+Prime
+</div>
+
+</div>
+
+<button
+class="full-btn"
+id="ordersBtn">
+📦 My Orders
+</button>
+
+<button
+class="full-btn"
+style="background:#7c3aed"
+id="primeBtn">
+👑 Request Prime
+</button>
+
+<button
+class="full-btn"
+style="background:#ef4444"
+id="logoutBtn">
+Logout
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CART -->
+
+<section
+id="cartPanel"
+class="panel hidden">
+
+<h2>🛒 Shopping Cart</h2>
+
+<div id="cartItems"></div>
+
+<div class="total-box">
+
+<div class="total"
+id="cartTotal">
+Total: $0.00
+</div>
+
+<button
+class="primary"
+id="checkoutBtn"
+style="margin-top:12px">
+
+Proceed to Checkout
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CHECKOUT -->
+
+<section
+id="checkoutPanel"
+class="panel hidden">
+
+<h2>🧾 Checkout</h2>
+
+<div class="checkout-grid">
+
+<div>
+
+<h3>Shipping Address</h3>
+
+<input
+id="shipName"
+class="input"
+placeholder="Full Name">
+
+<input
+id="shipPhone"
+class="input"
+placeholder="Phone Number">
+
+<textarea
+id="shipAddress"
+class="input"
+rows="4"
+placeholder="Full Address"></textarea>
+
+<select
+id="paymentMethod"
+class="input">
+
+<option value="cod">
+Cash on Delivery
+</option>
+
+</select>
+
+<button
+class="full-btn"
+style="background:#f59e0b;color:#111"
+id="placeOrderBtn">
+
+Place Order
+
+</button>
+
+</div>
+
+
+<div class="summary">
+
+<h3>Order Summary</h3>
+
+<div
+id="checkoutItems">
+</div>
+
+<div class="summary-line">
+<span>Subtotal</span>
+<b id="checkoutSubtotal">$0.00</b>
+</div>
+
+<div class="summary-line">
+<span>Shipping</span>
+<b>$5.00</b>
+</div>
+
+<div class="summary-line">
+<span>Tax</span>
+<b id="checkoutTax">$0.00</b>
+</div>
+
+<div class="summary-total">
+
+Total:
+<span id="checkoutTotal">
+$0.00
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ORDERS -->
+
+<section
+id="ordersPanel"
+class="panel hidden">
+
+<h2>📦 My Orders</h2>
+
+<div id="ordersList"></div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section id="productsSection">
+
+<h2 class="section-title">
+🔥 Popular Products
+</h2>
+
+<div
+id="productGrid"
+class="products">
+</div>
+
+</section>
+
+
+<!-- ADMIN -->
+
+<section
+id="adminPanel"
+class="panel admin hidden">
+
+<div class="admin-title">
+
+<h2>👨‍💼 Admin Dashboard</h2>
+
+<span
+class="status">
+ADMIN
+</span>
+
+</div>
+
+
+<div class="admin-grid">
+
+<div class="admin-stat">
+<b id="adminProducts">0</b>
+Products
+</div>
+
+<div class="admin-stat">
+<b id="adminOrders">0</b>
+Orders
+</div>
+
+<div class="admin-stat">
+<b id="adminUsers">—</b>
+Users
+</div>
+
+<div class="admin-stat">
+<b id="adminPrime">0</b>
+Prime Requests
+</div>
+
+</div>
+
+
+<h3>➕ Add Product</h3>
+
+<input
+id="adminProductName"
+class="input"
+placeholder="Product name">
+
+<input
+id="adminProductPrice"
+class="input"
+type="number"
+step="0.01"
+placeholder="Price USD">
+
+<input
+id="adminProductIcon"
+class="input"
+placeholder="Emoji e.g. 🎧">
+
+<input
+id="adminProductDescription"
+class="input"
+placeholder="Description">
+
+<button
+class="full-btn"
+style="background:#16a34a"
+id="addProductBtn">
+
+Add Product
+
+</button>
+
+
+<h3 style="margin-top:25px">
+📦 Manage Products
+</h3>
+
+<div id="adminProductList"></div>
+
+
+<h3 style="margin-top:25px">
+🧾 Manage Orders
+</h3>
+
+<div id="adminOrderList"></div>
+
+
+<h3 style="margin-top:25px">
+👑 Prime Requests
+</h3>
+
+<div id="adminPrimeList"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div style="font-size:20px;font-weight:bold">
+🌎 Global US Shopping
+</div>
+
+<div class="creator">
+Created by Atik ❤️
+</div>
+
+</footer>
+
+
+<!-- PRODUCT MODAL -->
+
+<div
+id="productModal"
+class="modal hidden">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2 id="modalTitle">
+Product
+</h2>
+
+<button
+class="close"
+onclick="closeModal()">
+×
+</button>
+
+</div>
+
+<div
+id="modalContent">
+</div>
+
+</div>
+
+</div>
+
+
+<div
+id="toast"
+class="toast">
+Done
+</div>
+
+
+<script type="module">
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
+}
+from
+"https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+import {
+getDatabase,
+ref,
+push,
+set,
+get,
+update,
+remove,
+onValue
+}
+from
+"https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig={
+
+apiKey:"AIzaSyCkmcBOiv4hTDINvTFT7d2ZEr2nQK9jShw",
+
+authDomain:"global-usa-products.firebaseapp.com",
+
+projectId:"global-usa-products",
+
+storageBucket:"global-usa-products.firebasestorage.app",
+
+messagingSenderId:"695981349295",
+
+appId:"1:695981349295:web:399cfb381b500c58c0b75a",
+
+measurementId:"G-L89GW4FTM8",
+
+databaseURL:
+"https://global-usa-products-default-rtdb.firebaseio.com"
+
+};
+
+
+const app=
+initializeApp(firebaseConfig);
+
+const auth=
+getAuth(app);
+
+const db=
+getDatabase(app);
+
+
+/*
+IMPORTANT:
+এটা শুধু UI-তে Admin button দেখানোর জন্য।
+
+Database security অবশ্যই Firebase Rules দিয়ে করতে হবে।
+*/
+
+const ADMIN_UID=
+"9MDJ4dzLgbV8C7UbhIMGcgwhH5u2";
+
+
+/* STATE */
+
+let currentUser=null;
+
+let products=[];
+
+let cart=
+JSON.parse(
+localStorage.getItem("gus_cart") || "[]"
+);
+
+
+/* DEMO PRODUCTS */
+
+const defaultProducts=[
+
+{
+id:"demo1",
+name:"Premium Wireless Headphones",
+price:49.99,
+icon:"🎧",
+description:"Premium wireless headphones with quality sound.",
+active:true
+},
+
+{
+id:"demo2",
+name:"Smart Watch",
+price:39.99,
+icon:"⌚",
+description:"Modern smart watch for everyday use.",
+active:true
+},
+
+{
+id:"demo3",
+name:"Bluetooth Speaker",
+price:29.99,
+icon:"🔊",
+description:"Portable Bluetooth speaker.",
+active:true
+},
+
+{
+id:"demo4",
+name:"Gaming Mouse",
+price:24.99,
+icon:"🖱️",
+description:"Responsive gaming mouse.",
+active:true
+},
+
+{
+id:"demo5",
+name:"USB-C Fast Charger",
+price:19.99,
+icon:"🔌",
+description:"Fast USB-C charging adapter.",
+active:true
+},
+
+{
+id:"demo6",
+name:"LED Desk Lamp",
+price:34.99,
+icon:"💡",
+description:"Modern LED desk lamp.",
+active:true
+},
+
+{
+id:"demo7",
+name:"Travel Backpack",
+price:44.99,
+icon:"🎒",
+description:"Comfortable travel backpack.",
+active:true
+},
+
+{
+id:"demo8",
+name:"Wireless Keyboard",
+price:32.99,
+icon:"⌨️",
+description:"Slim wireless keyboard.",
+active:true
+}
+
+];
+
+
+/* UTIL */
+
+function toast(message){
+
+const t=
+document.getElementById("toast");
+
+t.textContent=message;
+
+t.style.display="block";
+
+setTimeout(()=>{
+t.style.display="none";
+},2500);
+
+}
+
+
+function money(value){
+
+return "$"+
+Number(value || 0)
+.toFixed(2);
+
+}
+
+
+function saveCart(){
+
+localStorage.setItem(
+"gus_cart",
+JSON.stringify(cart)
+);
+
+}
+
+
+/* LOAD PRODUCTS */
+
+function loadProducts(){
+
+onValue(
+ref(db,"products"),
+snapshot=>{
+
+const data=
+snapshot.val();
+
+if(data){
+
+products=
+Object.entries(data)
+.map(([id,p])=>({
+id,
+...p
+}))
+.filter(p=>p.active!==false);
+
+}else{
+
+products=
+defaultProducts;
+
+}
+
+showProducts(products);
+
+renderAdminProducts();
+
+},
+error=>{
+
+console.log(error);
+
+products=
+defaultProducts;
+
+showProducts(products);
+
+});
+
+}
+
+
+/* PRODUCTS */
+
+function showProducts(list){
+
+const grid=
+document.getElementById("productGrid");
+
+grid.innerHTML="";
+
+
+if(!list.length){
+
+grid.innerHTML=
+"<p>No products found.</p>";
+
+return;
+
+}
+
+
+list.forEach(p=>{
+
+const div=
+document.createElement("div");
+
+div.className="product";
+
+div.innerHTML=`
+
+<div class="product-img">
+${p.icon || "📦"}
+</div>
+
+<div class="product-body">
+
+<div class="product-name">
+${escapeHTML(p.name)}
+</div>
+
+<div class="product-desc">
+${escapeHTML(p.description || "Quality product • Fast shipping")}
+</div>
+
+<div class="price">
+${money(p.price)}
+</div>
+
+<div class="product-actions">
+
+<button
+class="add-btn">
+🛒 Add
+</button>
+
+<button
+class="buy-btn">
+⚡ Buy
+</button>
+
+</div>
+
+</div>
+
+`;
+
+
+div.querySelector(".add-btn")
+.onclick=()=>addToCart(p);
+
+
+div.querySelector(".buy-btn")
+.onclick=()=>buyNow(p);
+
+
+div.querySelector(".product-img")
+.onclick=()=>showProductDetails(p);
+
+
+grid.appendChild(div);
+
+});
+
+}
+
+
+function escapeHTML(text){
+
+return String(text || "")
+.replace(/[&<>"']/g,m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m]));
+
+}
+
+
+/* SEARCH */
+
+document
+.getElementById("searchInput")
+.addEventListener("input",e=>{
+
+const q=
+e.target.value
+.toLowerCase()
+.trim();
+
+const result=
+products.filter(p=>
+String(p.name)
+.toLowerCase()
+.includes(q)
+);
+
+showProducts(result);
+
+});
+
+
+/* CART */
+
+function addToCart(product){
+
+const existing=
+cart.find(x=>x.id===product.id);
+
+if(existing){
+
+existing.qty++;
+
+}else{
+
+cart.push({
+...product,
+qty:1
+});
+
+}
+
+saveCart();
+
+renderCart();
+
+toast(
+product.name+" added to cart"
+);
+
+}
+
+
+function removeFromCart(id){
+
+cart=
+cart.filter(x=>x.id!==id);
+
+saveCart();
+
+renderCart();
+
+}
+
+
+function changeQty(id,amount){
+
+const item=
+cart.find(x=>x.id===id);
+
+if(!item)return;
+
+item.qty+=amount;
+
+if(item.qty<=0){
+
+removeFromCart(id);
+
+return;
+
+}
+
+saveCart();
+
+renderCart();
+
+}
+
+
+function cartCount(){
+
+return cart.reduce(
+(a,x)=>a+Number(x.qty),
+0
+);
+
+}
+
+
+function cartSubtotal(){
+
+return cart.reduce(
+(a,x)=>
+a+
+Number(x.price)*
+Number(x.qty),
+0
+);
+
+}
+
+
+function renderCart(){
+
+document
+.getElementById("cartCount")
+.textContent=
+cartCount();
+
+
+const box=
+document.getElementById("cartItems");
+
+box.innerHTML="";
+
+
+if(!cart.length){
+
+box.innerHTML=
+'<div style="padding:30px;text-align:center;color:#777">Your cart is empty 🛒</div>';
+
+document
+.getElementById("cartTotal")
+.textContent="$0.00";
+
+return;
+
+}
+
+
+cart.forEach(item=>{
+
+const row=
+document.createElement("div");
+
+row.className="cart-row";
+
+row.innerHTML=`
+
+<div class="cart-icon">
+${item.icon || "📦"}
+</div>
+
+<div class="cart-info">
+
+<h3>
+${escapeHTML(item.name)}
+</h3>
+
+<div>
+${money(item.price)}
+</div>
+
+</div>
+
+<div class="qty">
+
+<button class="minus">−</button>
+
+<span>
+${item.qty}
+</span>
+
+<button class="plus">+</button>
+
+</div>
+
+<button class="remove">
+Remove
+</button>
+
+`;
+
+
+row.querySelector(".minus")
+.onclick=()=>changeQty(item.id,-1);
+
+row.querySelector(".plus")
+.onclick=()=>changeQty(item.id,1);
+
+row.querySelector(".remove")
+.onclick=()=>removeFromCart(item.id);
+
+box.appendChild(row);
+
+});
+
+
+document
+.getElementById("cartTotal")
+.textContent=
+money(cartSubtotal());
+
+}
+
+
+renderCart();
+
+
+/* BUY NOW */
+
+function buyNow(product){
+
+cart=[{
+...product,
+qty:1
+}];
+
+saveCart();
+
+renderCart();
+
+openPanel("checkoutPanel");
+
+prepareCheckout();
+
+}
+
+
+/* PANELS */
+
+function openPanel(id){
+
+[
+"accountPanel",
+"cartPanel",
+"checkoutPanel",
+"ordersPanel"
+].forEach(x=>
+document
+.getElementById(x)
+.classList.add("hidden")
+);
+
+document
+.getElementById(id)
+.classList.remove("hidden");
+
+document
+.getElementById(id)
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+
+function scrollToProducts(){
+
+document
+.getElementById("productsSection")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* CART BUTTON */
+
+document
+.getElementById("cartBtn")
+.onclick=()=>{
+
+openPanel("cartPanel");
+
+};
+
+
+/* ACCOUNT BUTTON */
+
+document
+.getElementById("accountBtn")
+.onclick=()=>{
+
+openPanel("accountPanel");
+
+};
+
+
+/* AUTH REGISTER */
+
+document
+.getElementById("registerBtn")
+.onclick=async()=>{
+
+const email=
+document
+.getElementById("email")
+.value
+.trim();
+
+const password=
+document
+.getElementById("password")
+.value;
+
+
+if(!email || password.length<6){
+
+showAuthMessage(
+"Email দিন এবং password কমপক্ষে 6 characters করুন।"
+);
+
+return;
+
+}
+
+
+try{
+
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+showAuthMessage(
+"Account created successfully!"
+);
+
+}
+catch(error){
+
+showAuthMessage(
+friendlyAuthError(error.code)
+);
+
+}
+
+};
+
+
+/* LOGIN */
+
+document
+.getElementById("loginBtn")
+.onclick=async()=>{
+
+const email=
+document
+.getElementById("email")
+.value
+.trim();
+
+const password=
+document
+.getElementById("password")
+.value;
+
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+showAuthMessage("");
+
+}
+catch(error){
+
+showAuthMessage(
+friendlyAuthError(error.code)
+);
+
+}
+
+};
+
+
+function friendlyAuthError(code){
+
+if(code==="auth/invalid-credential")
+return "Email অথবা password ভুল।";
+
+if(code==="auth/email-already-in-use")
+return "এই email দিয়ে account already আছে।";
+
+if(code==="auth/invalid-email")
+return "সঠিক email দিন।";
+
+if(code==="auth/weak-password")
+return "Password কমপক্ষে 6 characters হতে হবে।";
+
+return "Authentication failed.";
+
+}
+
+
+/* AUTH STATE */
+
+onAuthStateChanged(
+auth,
+async user=>{
+
+currentUser=user;
+
+const loginArea=
+document.getElementById("loginArea");
+
+const userArea=
+document.getElementById("userArea");
+
+const admin=
+document.getElementById("adminPanel");
+
+
+if(user){
+
+loginArea.classList.add("hidden");
+
+userArea.classList.remove("hidden");
+
+document
+.getElementById("userEmail")
+.textContent=
+"Logged in as: "+user.email;
+
+
+if(user.uid===ADMIN_UID){
+
+admin.classList.remove("hidden");
+
+loadAdminData();
+
+}else{
+
+admin.classList.add("hidden");
+
+}
+
+
+loadUserOrders();
+
+}else{
+
+loginArea.classList.remove("hidden");
+
+userArea.classList.add("hidden");
+
+admin.classList.add("hidden");
+
+}
+
+});
+
+
+/* LOGOUT */
+
+document
+.getElementById("logoutBtn")
+.onclick=()=>{
+
+signOut(auth);
+
+toast("Logged out");
+
+};
+
+
+/* CHECKOUT */
+
+document
+.getElementById("checkoutBtn")
+.onclick=()=>{
+
+if(!cart.length){
+
+toast("Cart is empty");
+
+return;
+
+}
+
+if(!currentUser){
+
+toast("Please login first");
+
+openPanel("accountPanel");
+
+return;
+
+}
+
+prepareCheckout();
+
+openPanel("checkoutPanel");
+
+};
+
+
+function prepareCheckout(){
+
+const box=
+document.getElementById("checkoutItems");
+
+box.innerHTML="";
+
+
+cart.forEach(item=>{
+
+const p=
+document.createElement("p");
+
+p.style.margin="6px 0";
+
+p.textContent=
+item.name+
+" × "+
+item.qty+
+" = "+
+money(item.price*item.qty);
+
+box.appendChild(p);
+
+});
+
+
+const subtotal=
+cartSubtotal();
+
+const shipping=
+5;
+
+const tax=
+subtotal*0.05;
+
+const total=
+subtotal+shipping+tax;
+
+
+document
+.getElementById("checkoutSubtotal")
+.textContent=
+money(subtotal);
+
+document
+.getElementById("checkoutTax")
+.textContent=
+money(tax);
+
+document
+.getElementById("checkoutTotal")
+.textContent=
+money(total);
+
+}
+
+
+/* PLACE ORDER */
+
+document
+.getElementById("placeOrderBtn")
+.onclick=async()=>{
+
+if(!currentUser){
+
+toast("Please login");
+
+return;
+
+}
+
+if(!cart.length){
+
+toast("Cart is empty");
+
+return;
+
+}
+
+
+const name=
+document
+.getElementById("shipName")
+.value
+.trim();
+
+const phone=
+document
+.getElementById("shipPhone")
+.value
+.trim();
+
+const address=
+document
+.getElementById("shipAddress")
+.value
+.trim();
+
+
+if(!name || !phone || !address){
+
+toast("Shipping information complete করুন");
+
+return;
+
+}
+
+
+const subtotal=
+cartSubtotal();
+
+const shipping=5;
+
+const tax=
+subtotal*0.05;
+
+const total=
+subtotal+shipping+tax;
+
+
+const orderRef=
+push(ref(db,"orders"));
+
+const order={
+
+id:orderRef.key,
+
+uid:currentUser.uid,
+
+email:currentUser.email,
+
+items:cart,
+
+shipping:{
+name,
+phone,
+address
+},
+
+paymentMethod:"Cash on Delivery",
+
+subtotal,
+
+shippingCost:shipping,
+
+tax,
+
+total,
+
+status:"Pending",
+
+createdAt:
+Date.now()
+
+};
+
+
+try{
+
+await set(
+orderRef,
+order
+);
+
+cart=[];
+
+saveCart();
+
+renderCart();
+
+document
+.getElementById("shipName")
+.value="";
+
+document
+.getElementById("shipPhone")
+.value="";
+
+document
+.getElementById("shipAddress")
+.value="";
+
+
+toast("Order placed successfully! 🎉");
+
+openPanel("ordersPanel");
+
+loadUserOrders();
+
+}
+catch(error){
+
+console.error(error);
+
+toast(
+"Order failed. Firebase Rules check করুন।"
+);
+
+}
+
+};
+
+
+/* USER ORDERS */
+
+function loadUserOrders(){
+
+if(!currentUser)return;
+
+onValue(
+ref(db,"orders"),
+snapshot=>{
+
+const data=
+snapshot.val() || {};
+
+const orders=
+Object.values(data)
+.filter(o=>
+o.uid===currentUser.uid
+)
+.sort(
+(a,b)=>
+Number(b.createdAt||0)-
+Number(a.createdAt||0)
+);
+
+renderOrders(orders);
+
+document
+.getElementById("orderCount")
+.textContent=
+orders.length;
+
+});
+
+}
+
+
+function renderOrders(orders){
+
+const box=
+document.getElementById("ordersList");
+
+box.innerHTML="";
+
+
+if(!orders.length){
+
+box.innerHTML=
+'<p style="padding:20px;color:#777">No orders yet.</p>';
+
+return;
+
+}
+
+
+orders.forEach(order=>{
+
+const div=
+document.createElement("div");
+
+div.className="order";
+
+let items="";
+
+(order.items || [])
+.forEach(item=>{
+
+items+=
+`<div>${escapeHTML(item.name)} × ${item.qty}</div>`;
+
+});
+
+
+div.innerHTML=`
+
+<div style="display:flex;justify-content:space-between;gap:10px">
+
+<b>
+Order #${String(order.id||"").slice(-8)}
+</b>
+
+<span class="status">
+${escapeHTML(order.status||"Pending")}
+</span>
+
+</div>
+
+<div style="margin-top:10px">
+${items}
+</div>
+
+<p style="margin-top:10px">
+Total: <b>${money(order.total)}</b>
+</p>
+
+`;
+
+
+if(order.status==="Delivered"){
+
+const reviewBtn=
+document.createElement("button");
+
+reviewBtn.className="full-btn";
+
+reviewBtn.style.background="#f59e0b";
+
+reviewBtn.textContent=
+"⭐ Write Review";
+
+reviewBtn.onclick=()=>
+openReview(order);
+
+div.appendChild(reviewBtn);
+
+}
+
+
+box.appendChild(div);
+
+});
+
+}
+
+
+/* ORDERS BUTTON */
+
+document
+.getElementById("ordersBtn")
+.onclick=()=>{
+
+openPanel("ordersPanel");
+
+loadUserOrders();
+
+};
+
+
+/* REVIEW */
+
+async function openReview(order){
+
+if(!currentUser)return;
+
+const first=
+(order.items||[])[0];
+
+if(!first){
+
+toast("No product found");
+
+return;
+
+}
+
+
+document
+.getElementById("modalTitle")
+.textContent=
+"⭐ Write Product Review";
+
+
+document
+.getElementById("modalContent")
+.innerHTML=`
+
+<p>
+${escapeHTML(first.name)}
+</p>
+
+<select
+id="reviewRating"
+class="input">
+
+<option value="5">⭐⭐⭐⭐⭐ 5</option>
+<option value="4">⭐⭐⭐⭐ 4</option>
+<option value="3">⭐⭐⭐ 3</option>
+<option value="2">⭐⭐ 2</option>
+<option value="1">⭐ 1</option>
+
+</select>
+
+<textarea
+id="reviewText"
+class="input"
+rows="5"
+maxlength="500"
+placeholder="Write your review..."></textarea>
+
+<button
+id="submitReview"
+class="full-btn"
+style="background:#f59e0b;color:#111">
+
+Submit Review
+
+</button>
+
+`;
+
+
+document
+.getElementById("productModal")
+.classList.remove("hidden");
+
+
+document
+.getElementById("submitReview")
+.onclick=async()=>{
+
+const rating=
+Number(
+document
+.getElementById("reviewRating")
+.value
+);
+
+const text=
+document
+.getElementById("reviewText")
+.value
+.trim();
+
+
+if(!text){
+
+toast("Review লিখুন");
+
+return;
+
+}
+
+
+const reviewRef=
+push(ref(db,
+"reviews/"+first.id
+));
+
+
+await set(
+reviewRef,
+{
+
+uid:currentUser.uid,
+
+email:currentUser.email,
+
+rating,
+
+text,
+
+orderId:order.id,
+
+createdAt:Date.now()
+
+}
+);
+
+
+toast("Review submitted ⭐");
+
+closeModal();
+
+};
+
+}
+
+
+/* PRODUCT DETAILS */
+
+function showProductDetails(product){
+
+document
+.getElementById("modalTitle")
+.textContent=
+product.name;
+
+
+document
+.getElementById("modalContent")
+.innerHTML=`
+
+<div style="text-align:center">
+
+<div style="font-size:90px">
+${product.icon||"📦"}
+</div>
+
+<h2>
+${escapeHTML(product.name)}
+</h2>
+
+<p style="margin:12px 0;color:#666">
+${escapeHTML(product.description||"Quality product")}
+</p>
+
+<div class="price">
+${money(product.price)}
+</div>
+
+<button
+id="modalAdd"
+class="full-btn"
+style="background:#e5e7eb;color:#111">
+
+🛒 Add to Cart
+
+</button>
+
+<button
+id="modalBuy"
+class="full-btn"
+style="background:#fbbf24;color:#111">
+
+⚡ Buy Now
+
+</button>
+
+</div>
+
+`;
+
+
+document
+.getElementById("productModal")
+.classList.remove("hidden");
+
+
+document
+.getElementById("modalAdd")
+.onclick=()=>{
+
+addToCart(product);
+
+closeModal();
+
+};
+
+
+document
+.getElementById("modalBuy")
+.onclick=()=>{
+
+closeModal();
+
+buyNow(product);
+
+};
+
+}
+
+
+window.closeModal=()=>{
+
+document
+.getElementById("productModal")
+.classList.add("hidden");
+
+};
+
+
+/* PRIME */
+
+document
+.getElementById("primeBtn")
+.onclick=async()=>{
+
+if(!currentUser){
+
+toast("Please login");
+
+return;
+
+}
+
+
+const requestRef=
+ref(
+db,
+"primeRequests/"+currentUser.uid
+);
+
+
+await set(
+requestRef,
+{
+
+uid:currentUser.uid,
+
+email:currentUser.email,
+
+status:"Pending",
+
+createdAt:Date.now()
+
+}
+);
+
+
+toast(
+"Prime request submitted 👑"
+);
+
+};
+
+
+/* ADMIN DATA */
+
+function loadAdminData(){
+
+onValue(
+ref(db,"orders"),
+snapshot=>{
+
+const data=
+snapshot.val()||{};
+
+const orders=
+Object.values(data);
+
+document
+.getElementById("adminOrders")
+.textContent=
+orders.length;
+
+renderAdminOrders(orders);
+
+});
+
+
+onValue(
+ref(db,"primeRequests"),
+snapshot=>{
+
+const data=
+snapshot.val()||{};
+
+const requests=
+Object.values(data);
+
+document
+.getElementById("adminPrime")
+.textContent=
+requests.length;
+
+renderPrimeRequests(requests);
+
+});
+
+}
+
+
+/* ADMIN PRODUCTS */
+
+function renderAdminProducts(){
+
+if(!currentUser ||
+currentUser.uid!==ADMIN_UID)return;
+
+const box=
+document.getElementById("adminProductList");
+
+box.innerHTML="";
+
+const list=
+products;
+
+
+document
+.getElementById("adminProducts")
+.textContent=
+list.length;
+
+
+list.forEach(p=>{
+
+const div=
+document.createElement("div");
+
+div.className="admin-product";
+
+div.innerHTML=`
+
+<div style="display:flex;justify-content:space-between;gap:10px">
+
+<div>
+<b>${escapeHTML(p.icon||"📦")} ${escapeHTML(p.name)}</b>
+<br>
+${money(p.price)}
+</div>
+
+<button
+style="background:#ef4444;color:white;padding:8px;border-radius:6px">
+Delete
+</button>
+
+</div>
+
+`;
+
+
+div.querySelector("button")
+.onclick=async()=>{
+
+if(!confirm(
+"এই product delete করবেন?"
+))return;
+
+if(!String(p.id).startsWith("demo")){
+
+await remove(
+ref(db,"products/"+p.id)
+);
+
+toast("Product deleted");
+
+}else{
+
+toast(
+"Demo product Firebase থেকে delete করা যাবে না।"
+);
+
+}
+
+};
+
+
+box.appendChild(div);
+
+});
+
+}
+
+
+/* ADD PRODUCT */
+
+document
+.getElementById("addProductBtn")
+.onclick=async()=>{
+
+if(!currentUser ||
+currentUser.uid!==ADMIN_UID){
+
+toast("Admin access required");
+
+return;
+
+}
+
+
+const name=
+document
+.getElementById("adminProductName")
+.value
+.trim();
+
+const price=
+Number(
+document
+.getElementById("adminProductPrice")
+.value
+);
+
+const icon=
+document
+.getElementById("adminProductIcon")
+.value
+.trim() ||
+"📦";
+
+const description=
+document
+.getElementById("adminProductDescription")
+.value
+.trim();
+
+
+if(!name || !price){
+
+toast("Product name এবং price দিন");
+
+return;
+
+}
+
+
+const productRef=
+push(ref(db,"products"));
+
+
+await set(
+productRef,
+{
+
+name,
+
+price,
+
+icon,
+
+description,
+
+active:true,
+
+sellerUid:ADMIN_UID,
+
+createdAt:Date.now()
+
+}
+);
+
+
+document
+.getElementById("adminProductName")
+.value="";
+
+document
+.getElementById("adminProductPrice")
+.value="";
+
+document
+.getElementById("adminProductIcon")
+.value="";
+
+document
+.getElementById("adminProductDescription")
+.value="";
+
+
+toast("Product added successfully! 🛍️");
+
+};
+
+
+/* ADMIN ORDERS */
+
+function renderAdminOrders(orders){
+
+const box=
+document.getElementById("adminOrderList");
+
+box.innerHTML="";
+
+
+if(!orders.length){
+
+box.innerHTML=
+"<p>No orders.</p>";
+
+return;
+
+}
+
+
+orders
+.sort(
+(a,b)=>
+Number(b.createdAt||0)-
+Number(a.createdAt||0)
+)
+.forEach(order=>{
+
+const div=
+document.createElement("div");
+
+div.className="admin-order";
+
+div.innerHTML=`
+
+<b>
+Order #${String(order.id||"").slice(-8)}
+</b>
+
+<p>
+Customer: ${escapeHTML(order.email||"")}
+</p>
+
+<p>
+Total: ${money(order.total)}
+</p>
+
+<p>
+Current status:
+<b>${escapeHTML(order.status||"Pending")}</b>
+</p>
+
+<select class="input statusSelect">
+
+<option>Pending</option>
+<option>Confirmed</option>
+<option>Shipped</option>
+<option>Delivered</option>
+<option>Cancelled</option>
+
+</select>
+
+<button
+class="full-btn"
+style="background:#2563eb">
+Update Status
+</button>
+
+`;
+
+
+const select=
+div.querySelector(".statusSelect");
+
+select.value=
+order.status||"Pending";
+
+
+div.querySelector("button")
+.onclick=async()=>{
+
+await update(
+ref(db,"orders/"+order.id),
+{
+status:select.value
+}
+);
+
+toast("Order status updated");
+
+};
+
+
+box.appendChild(div);
+
+});
+
+}
+
+
+/* ADMIN PRIME */
+
+function renderPrimeRequests(requests){
+
+const box=
+document.getElementById("adminPrimeList");
+
+box.innerHTML="";
+
+
+if(!requests.length){
+
+box.innerHTML=
+"<p>No Prime requests.</p>";
+
+return;
+
+}
+
+
+requests.forEach(r=>{
+
+const div=
+document.createElement("div");
+
+div.className="admin-order";
+
+div.innerHTML=`
+
+<b>${escapeHTML(r.email)}</b>
+
+<p>
+Status: ${escapeHTML(r.status||"Pending")}
+</p>
+
+<select class="input">
+
+<option>Pending</option>
+<option>Approved</option>
+<option>Rejected</option>
+
+</select>
+
+<button
+class="full-btn"
+style="background:#7c3aed">
+Update Prime
+</button>
+
+`;
+
+
+const select=
+div.querySelector("select");
+
+select.value=
+r.status||"Pending";
+
+
+div.querySelector("button")
+.onclick=async()=>{
+
+await update(
+ref(db,"primeRequests/"+r.uid),
+{
+status:select.value,
+reviewedAt:Date.now()
+}
+);
+
+toast("Prime status updated");
+
+};
+
+
+box.appendChild(div);
+
+});
+
+}
+
+
+/* CLOSE MODAL WHEN CLICK OUTSIDE */
+
+document
+.getElementById("productModal")
+.addEventListener("click",e=>{
+
+if(e.target.id==="productModal"){
+closeModal();
+}
+
+});
+
+
+/* START */
+
+loadProducts();
+
+renderCart();
+
+
+</script>
+
+</body>
+</html>
